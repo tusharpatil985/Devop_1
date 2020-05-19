@@ -1,0 +1,67 @@
+
+Devop Project
+-------------
+
+
+1.) Creating EC2 instance - Open 8080 port for Jenkins
+2.) Installing Java:	
+	a. Check the verison on already installed Java. Amazon Linux comes with Java
+	b. java -version (Remove java 1.7 if VM has already had it)
+	c. yum remove java-1.7* (TO remove the already installed java version 1.7)
+	d. yum install java-1.8* (TO install java version 1.8)
+	e. find /usr/lib/jvm/java*1.8* | head -n 3 (To locate the java file)
+	f. Now set the above path in home directory
+	g. .bash_profile in root directory and update the java location
+	h. JAVA_HOME = jre file location
+ 
+
+3.) Installing Jenkins:
+	a. Go to the jenkins site and load the repository
+	b. then yum install jenkins to install jenkins
+	c. service jenkins status - to check the status whether jenkins is running or not
+	d. service jenkins start to start the jenkins
+	e. public id with 8080 port -- cat location to fetch the password
+
+4.) Go to jenkins console and update the password
+
+5.) Go to "Global Tool Configuration" to add java path
+
+6.) Install git on Jenkins server
+	a. Install plud in in jenkins console - GitHub
+	b. Go to "Global Tool Configuration" --github
+7.) Install Maven server 
+	a. Go to maven download site and copy the  tar file
+	b. Go to opt directory and install over there
+	c. wget and link
+	d. tar -xvzf "apache-maven....."
+	e. for better naming - Create Maven directory and move the contents of apache-maven....
+	f. Now again go back to vi .bash_profile and update the path location
+	g. sudo su -
+	h. mvn --version (You should see the version of the maven)
+
+8.) Go to Jenkins - Install maven plug-ins
+	a. Maven integration and Maven invoker
+	b. Go to the "Global Tool Configuration" and update the path: M2_HOME and /opt/maven
+
+9.) Installing Tomcat server - on AWS VM linux machine
+	a. Go to tomcat website..download tar file
+	b. download it into /opt
+	c. Go to /opt/tomcat/bin -- ./startup.sh to start tomcat server
+	d. You can see by public ip adreess:8080 port
+	e. find / -name context.xml
+	f. Under webapp - modify context.xml - grade out loop back (local ip) address by <!-- end with -->
+	g. Again go to tomcat/bin -- shutdown and startup again
+	h. Go to Conf and vi tomcat-users.xml by creating users credetials to access tomcat manager and to deploy on tomcat host server
+
+10.) Deploy war file on Tomcat VM
+	a. Install plug in "Deploy to container"
+	b. Create a Maven project for Deploy on Tomcat VM servers
+	c. Provide GIT url
+	d. Poll SCM = * * * * * 
+	e. Post build access : WAR/EAR files -- **/*.war
+	f. Containers to Tomcat 8
+	g. Generate Deployer key	
+	h. Provide Tomcat ip address of VM----- ipadress/webapps
+	i. Access through git and do the hands-on
+
+	b. 
