@@ -63,5 +63,3 @@ Devop Project
 	g. Generate Deployer key	
 	h. Provide Tomcat ip address of VM----- ipadress/webapps
 	i. Access through git and do the hands-on
-
-	b. 
